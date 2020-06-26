@@ -1,0 +1,12 @@
+version: '3'
+services:
+  docker-gpio-example:
+    build: .
+    image: marcosricardoss/docker-gpio:v1
+    container_name: docker-gpio-example 
+    command: python3 -u app.py
+    volumes:
+      - ./:/usr/src/app
+    devices: 
+      - /dev/gpiomem:/dev/gpiomem
+    # privileged: true
