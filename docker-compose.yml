@@ -1,12 +1,17 @@
 version: '3'
 services:
-  docker-gpio-example:
+  docker-gpio-run:
     build: .
-    image: marcosricardoss/docker-gpio:v1
-    container_name: docker-gpio-example 
-    command: python3 -u app.py
+    image: etvorellana/docker-gpio:v2
+    container_name: docker-gpio-run
+    #entrypoint: /bin/bash
+    #command: python3 -u /home/pi/GPIO/examples/example_2-3-a-LED.py
+    command: /bin/bash
+    stdin_open: true
+    tty: true        
     volumes:
-      - ./:/usr/src/app
+      - ./:/home/pi/GPIO
     devices: 
       - /dev/gpiomem:/dev/gpiomem
-    # privileged: true
+      - /dev/mem:/dev:mem
+    privileged: true
